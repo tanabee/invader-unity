@@ -11,6 +11,17 @@ public class AlienManager : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
+		GenerateAliens ();
+	}
+
+	// Update is called once per frame
+	void Update ()
+	{
+	
+	}
+
+	// Alien の生成
+	void GenerateAliens () {
 		// （横は中心、縦は上）を起点として Alien を配置していく
 		for (int x = 1; x <= horizontalLength; x++) {
 			for (int y = 1; y <= verticalLength; y++) {
@@ -23,12 +34,5 @@ public class AlienManager : MonoBehaviour
 				alien.transform.SetParent (transform);
 			}
 		}
-	
-	}
-	
-	// Update is called once per frame
-	void Update ()
-	{
-	
 	}
 }
