@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class AlienManager : MonoBehaviour
+public class AlienController : MonoBehaviour
 {
 
 	public GameObject alienPrefab;
