@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour, IDragHandler {
 
 	public void ShootBeam() {
 		GameObject beam = (GameObject)Instantiate (beamPrefab, playerContainer.transform.position, Quaternion.identity);
+
 		Destroy (beam, 3f);
 	}
 }
