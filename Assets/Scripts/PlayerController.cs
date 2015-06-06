@@ -38,6 +38,11 @@ public class PlayerController : MonoBehaviour, IBeginDragHandler, IEndDragHandle
 
 			playerContainer.transform.position = pos;
 		}
+
+		GameObject[] beams = GameObject.FindGameObjectsWithTag ("Beam");
+		if (beams.Length == 0) {
+			fireButton.interactable = true;
+		}
 	}
 
 	public void OnBeginDrag (PointerEventData eventData) {
@@ -55,7 +60,7 @@ public class PlayerController : MonoBehaviour, IBeginDragHandler, IEndDragHandle
 
 	public void ShootBeam() {
 		GameObject beam = (GameObject)Instantiate (beamPrefab, playerContainer.transform.position, Quaternion.identity);
-		Destroy (beam, 3f);
+		Destroy (beam, 1f);
 	}
 
 	void OnButtonClick () {
@@ -64,12 +69,12 @@ public class PlayerController : MonoBehaviour, IBeginDragHandler, IEndDragHandle
 		// ボタン無効化
 		fireButton.interactable = false;
 
-		// 1 秒後に再発射できる
-		StartCoroutine(enableButtonAfterSeconds(1.0f));
+//		// 1 秒後に再発射できる
+//		StartCoroutine(enableButtonAfterSeconds(1.0f));
 	}
 
-	IEnumerator enableButtonAfterSeconds(float seconds) {
-		yield return new WaitForSeconds(seconds);
-		fireButton.interactable = true;
-	}
+//	IEnumerator enableButtonAfterSeconds(float seconds) {
+//		yield return new WaitForSeconds(seconds);
+//		fireButton.interactable = true;
+//	}
 }
