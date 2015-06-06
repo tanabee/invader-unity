@@ -34,8 +34,12 @@ public class AlienController : MonoBehaviour
 	}
 
 	// Update is called once per frame
-	void Update ()
-	{
+	void Update () {
+		GameObject[] enemies = GameObject.FindGameObjectsWithTag ("Enemy");
+		if (enemies.Length == 0) {
+			Application.LoadLevel ("Score");
+		}
+
 		if (shouldMove ()) {
 			Move ();
 		}
