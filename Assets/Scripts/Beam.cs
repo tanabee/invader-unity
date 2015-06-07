@@ -16,5 +16,17 @@ public class Beam : MonoBehaviour {
 	void Update () {
 		float direction = isPlayer ? 1 : -1;
 		transform.Translate (new Vector2(0, direction) * speed);
+
+		// カメラ外に出たら削除
+		// 画面左下のワールド座標をビューポートから取得
+		Vector2 min = Camera.main.ViewportToWorldPoint (new Vector2 (0.05f, 0));
+		// 画面右上のワールド座標をビューポートから取得
+		Vector2 max = Camera.main.ViewportToWorldPoint (new Vector2 (0.95f, 1));
+
+		Vector2 pos = transform.position;
+		if (pos.x > max.x || pos.y > max.y ||
+		    pos.x < min.x || pos.y < min.y) {
+			Destroy (gameObject);
+		}
 	}
 }

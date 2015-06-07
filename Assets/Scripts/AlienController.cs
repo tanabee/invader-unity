@@ -106,7 +106,6 @@ public class AlienController : MonoBehaviour
 
 	void ShootBeam(Transform transform) {
 		GameObject beam = (GameObject)Instantiate (beamPrefab, transform.position, Quaternion.identity);
-		Destroy (beam, 1f);
 	}
 
 	// 今動くべきかを返す
