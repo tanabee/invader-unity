@@ -1,10 +1,12 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class AlienController : MonoBehaviour
 {
 
 	public GameObject alienPrefab;
+	public Text gameScore;
 
 	private Vector2 startPos;
 
@@ -39,6 +41,7 @@ public class AlienController : MonoBehaviour
 		if (enemies.Length == 0) {
 			Application.LoadLevel ("Score");
 		}
+		gameScore.text = ((horizontalLength * verticalLength - enemies.Length) * 100).ToString ();
 
 		if (shouldMove ()) {
 			Move ();
