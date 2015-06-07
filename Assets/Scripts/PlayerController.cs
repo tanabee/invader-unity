@@ -45,15 +45,18 @@ public class PlayerController : MonoBehaviour, IBeginDragHandler, IEndDragHandle
 		}
 	}
 
+	// ドラッグ開始位置を保持
 	public void OnBeginDrag (PointerEventData eventData) {
 		beginDragPos = (Vector2)eventData.worldPosition;
 		dragging = true;
 	}
 
+	// ドラッグ中
 	public void OnDrag (PointerEventData eventData) {
 		dragDirection = ((Vector2)eventData.worldPosition - beginDragPos).x > 0 ? 1f : -1f;
 	}
 
+	// ドラッグ終了
 	public void OnEndDrag (PointerEventData eventData) {
 		dragging = false;
 	}
@@ -68,13 +71,5 @@ public class PlayerController : MonoBehaviour, IBeginDragHandler, IEndDragHandle
 
 		// ボタン無効化
 		fireButton.interactable = false;
-
-//		// 1 秒後に再発射できる
-//		StartCoroutine(enableButtonAfterSeconds(1.0f));
 	}
-
-//	IEnumerator enableButtonAfterSeconds(float seconds) {
-//		yield return new WaitForSeconds(seconds);
-//		fireButton.interactable = true;
-//	}
 }
