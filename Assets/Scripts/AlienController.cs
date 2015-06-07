@@ -6,7 +6,7 @@ public class AlienController : MonoBehaviour
 {
 
 	public GameObject alienPrefab;
-	public Text gameScore;
+	public ScoreCounter scoreCounter;
 
 	private Vector2 startPos;
 
@@ -41,7 +41,7 @@ public class AlienController : MonoBehaviour
 		if (enemies.Length == 0) {
 			Application.LoadLevel ("Score");
 		}
-		gameScore.text = ((horizontalLength * verticalLength - enemies.Length) * 100).ToString ();
+		scoreCounter.SetScore (DataManager.instance.score);
 
 		if (shouldMove ()) {
 			Move ();
