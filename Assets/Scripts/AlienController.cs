@@ -7,6 +7,7 @@ public class AlienController : MonoBehaviour
 
 	public GameObject alienPrefab;
 	public ScoreCounter scoreCounter;
+	public GameObject beamPrefab;
 
 	private Vector2 startPos;
 
@@ -16,7 +17,10 @@ public class AlienController : MonoBehaviour
 
 	// Alien が動くタイミングを制御するための変数
 	private float moveInterval = 1f;
-	private float currentTime = 0;
+	private float moveTimer = 0;
+	// ビームを発射するタイミング
+	private float shootInterval = 3f;
+	private float shootTimer = 0;
 
 	// 一度に移動する距離
 	private float verticalDistance = 0.2f;
@@ -46,6 +50,10 @@ public class AlienController : MonoBehaviour
 		if (shouldMove ()) {
 			Move ();
 		}
+
+		if (shouldShoot ()) {
+			ShootBeam (enemies[0].transform);
+		}
 	}
 
 	// Alien の生成
@@ -64,6 +72,7 @@ public class AlienController : MonoBehaviour
 		}
 	}
 
+	// Alien の集団の移動
 	void Move ()
 	{
 
@@ -95,13 +104,31 @@ public class AlienController : MonoBehaviour
 		}
 	}
 
+	void ShootBeam(Transform transform) {
+		GameObject beam = (GameObject)Instantiate (beamPrefab, transform.position, Quaternion.identity);
+		Destroy (beam, 1f);
+	}
+
 	// 今動くべきかを返す
 	bool shouldMove ()
 	{
-		currentTime += Time.deltaTime;
+		moveTimer += Time.deltaTime;
 
-		if (currentTime > moveInterval) {
-			currentTime = 0;
+		if (moveTimer > moveInterval) {
+			moveTimer = 0;
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	// 今打つべきかを返す
+	bool shouldShoot ()
+	{
+		shootTimer += Time.deltaTime;
+
+		if (shootTimer > shootInterval) {
+			shootTimer = 0;
 			return true;
 		} else {
 			return false;

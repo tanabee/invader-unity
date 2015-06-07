@@ -3,7 +3,8 @@ using System.Collections;
 
 public class Beam : MonoBehaviour {
 
-	private float speed = 0.2f;
+	public float speed;
+	public bool isPlayer;
 	public AudioClip clip;
 
 	void Start () {
@@ -13,6 +14,7 @@ public class Beam : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		transform.Translate (Vector2.up * speed);
+		float direction = isPlayer ? 1 : -1;
+		transform.Translate (new Vector2(0, direction) * speed);
 	}
 }

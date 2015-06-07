@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour, IBeginDragHandler, IEndDragHandle
 			playerContainer.transform.position = pos;
 		}
 
-		GameObject[] beams = GameObject.FindGameObjectsWithTag ("Beam");
+		GameObject[] beams = GameObject.FindGameObjectsWithTag ("PlayerBeam");
 		if (beams.Length == 0) {
 			fireButton.interactable = true;
 		}
