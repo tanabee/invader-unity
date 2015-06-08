@@ -7,6 +7,7 @@ public class AlienController : MonoBehaviour
 
 	public GameObject alienPrefab;
 	public ScoreCounter scoreCounter;
+	public GameObject playerContainer;
 	public GameObject beamPrefab;
 
 	private Vector2 startPos;
@@ -52,7 +53,7 @@ public class AlienController : MonoBehaviour
 		}
 
 		if (shouldShoot ()) {
-			ShootBeam (enemies[0].transform);
+			ShootBeam (enemies);
 		}
 	}
 
@@ -104,8 +105,21 @@ public class AlienController : MonoBehaviour
 		}
 	}
 
-	void ShootBeam(Transform transform) {
-		GameObject beam = (GameObject)Instantiate (beamPrefab, transform.position, Quaternion.identity);
+	void ShootBeam(GameObject[] enemies) {
+
+		// x 座標換算で一番近い敵
+		GameObject closestEnemy = enemies[0];
+		float closestDiffX = Mathf.Abs(closestEnemy.transform.position.x - playerContainer.transform.position.x);
+
+		foreach (GameObject enemy in enemies) {
+			float diffX = Mathf.Abs (enemy.transform.position.x - playerContainer.transform.position.x);
+			if (diffX < closestDiffX) {
+				closestEnemy = enemy;
+				closestDiffX = diffX;
+			}
+		}
+
+		GameObject beam = (GameObject)Instantiate (beamPrefab, closestEnemy.transform.position, Quaternion.identity);
 	}
 
 	// 今動くべきかを返す
