@@ -44,6 +44,7 @@ public class AlienController : MonoBehaviour
 	void Update () {
 		GameObject[] enemies = GameObject.FindGameObjectsWithTag ("Enemy");
 		if (enemies.Length == 0) {
+			DataManager.instance.isCleared = true;
 			Application.LoadLevel ("Score");
 		}
 		scoreCounter.SetScore (DataManager.instance.score);

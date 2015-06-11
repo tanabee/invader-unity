@@ -23,16 +23,18 @@ public class ScoreViewController : MonoBehaviour {
 		// 撃破ポイントを表示
 		enemyScore.text = DataManager.instance.score.ToString();
 
-		// TODO: クリアした時だけカウントする
-		// TODO: クリアした時だけカウントする
-		// TODO: クリアした時だけカウントする
 
-		// クリアタイムのスコアを表示
-		int timeScoreNum = (180 - (int)DataManager.instance.playTime) * 10;
-		if (timeScoreNum < 0) {
-			timeScoreNum = 0;
+		int timeScoreNum = 0;
+		if (DataManager.instance.isCleared) {
+			// クリアタイムのスコアを表示
+			timeScoreNum = (180 - (int)DataManager.instance.playTime) * 10;
+			if (timeScoreNum < 0) {
+				timeScoreNum = 0;
+			}
+			timeScore.text = timeScoreNum.ToString ();
+		} else {
+			timeScore.text = "0";
 		}
-		timeScore.text = timeScoreNum.ToString();
 
 		// トータルのスコアを表示
 		totalScore.text = (DataManager.instance.score + timeScoreNum).ToString();
