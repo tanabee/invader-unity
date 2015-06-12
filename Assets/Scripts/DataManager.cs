@@ -6,6 +6,12 @@ public class DataManager : MonoBehaviour {
 	// スコア
 	public int score;
 
+	// FIXME: ここらへんはスコアのシーンに値渡しできると嬉しい
+	// 直近のステージのプレイ時間
+	public float playTime;
+	// 直近のステージでクリアしたかどうか
+	public bool isCleared;
+
 	// 1つしかないインスタンス
 	static public DataManager instance;
 
@@ -21,6 +27,8 @@ public class DataManager : MonoBehaviour {
 		} else {
 
 			instance.score = 0;
+			instance.playTime = 0.0f;
+			instance.isCleared = false;
 
 			// 自分自身（新規に追加されたオブジェクト）を消す
 			Destroy (gameObject);
