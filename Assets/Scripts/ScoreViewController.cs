@@ -49,6 +49,10 @@ public class ScoreViewController : MonoBehaviour {
 
 		// ハイスコアだったら
 		if (totalScore > highScore) {
+			// TODO: ここをアニメーション付きでやりたい
+			// ハイスコア更新
+			highScoreLabel.text = totalScore.ToString();
+
 			// ローカル保存
 			PlayerPrefs.SetInt ("score", totalScore);
 		}
