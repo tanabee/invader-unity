@@ -45,6 +45,7 @@ public class StageDataManager : MonoBehaviour {
 				return stage;
 			}
 		}
+		return null;
 	}
 
 	// ステージ情報を JSON ファイルから取得

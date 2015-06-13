@@ -62,7 +62,7 @@ public class PlayerController : MonoBehaviour, IBeginDragHandler, IEndDragHandle
 	}
 
 	public void ShootBeam() {
-		GameObject beam = (GameObject)Instantiate (beamPrefab, playerContainer.transform.position, Quaternion.identity);
+		Instantiate (beamPrefab, playerContainer.transform.position, Quaternion.identity);
 	}
 
 	void OnButtonClick () {

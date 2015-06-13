@@ -120,7 +120,7 @@ public class AlienController : MonoBehaviour
 			}
 		}
 
-		GameObject beam = (GameObject)Instantiate (beamPrefab, closestEnemy.transform.position, Quaternion.identity);
+		Instantiate (beamPrefab, closestEnemy.transform.position, Quaternion.identity);
 	}
 
 	// 今動くべきかを返す
