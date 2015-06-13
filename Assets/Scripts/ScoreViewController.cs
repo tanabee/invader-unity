@@ -23,8 +23,10 @@ public class ScoreViewController : MonoBehaviour {
 	// スコア表示
 	void ShowScore () {
 
+		string scoreKey = "score-" + StageDataManager.instance.currentLevel.ToString ();
+
 		// ハイスコア表示
-		int highScore = PlayerPrefs.GetInt ("score");
+		int highScore = PlayerPrefs.GetInt (scoreKey);
 		highScoreLabel.text = highScore.ToString();
 
 		// 撃破ポイントを表示
@@ -53,7 +55,7 @@ public class ScoreViewController : MonoBehaviour {
 			highScoreLabel.text = totalScore.ToString();
 
 			// ローカル保存
-			PlayerPrefs.SetInt ("score", totalScore);
+			PlayerPrefs.SetInt (scoreKey, totalScore);
 		}
 	}
 
