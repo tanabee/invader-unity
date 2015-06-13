@@ -30,7 +30,6 @@ public class ScoreViewController : MonoBehaviour {
 		// 撃破ポイントを表示
 		enemyScoreLabel.text = DataManager.instance.score.ToString();
 
-
 		int timeScore = 0;
 		if (DataManager.instance.isCleared) {
 			// クリアタイムのスコアを表示

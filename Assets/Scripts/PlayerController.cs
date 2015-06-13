@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour, IBeginDragHandler, IEndDragHandle
 	public GameObject playerContainer;
 	public GameObject beamPrefab;
 	public Button fireButton;
-	private float speed = 5f;
+	private float speed = 4f;
 
 	private Vector2 beginDragPos;
 	private bool dragging = false;
