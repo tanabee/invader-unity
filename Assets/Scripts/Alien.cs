@@ -6,6 +6,7 @@ public class Alien : MonoBehaviour {
 
 	public AudioClip clip;
 	public int life;
+	public int point;
 
 	void OnTriggerEnter2D(Collider2D collider) {
 
@@ -25,7 +26,7 @@ public class Alien : MonoBehaviour {
 			SoundManager soundManager = GameObject.FindWithTag ("SoundManager").GetComponent<SoundManager> ();
 			soundManager.PlayClip (clip);
 
-			DataManager.instance.score += 50;
+			DataManager.instance.score += point;
 
 			Destroy (gameObject);
 		}
