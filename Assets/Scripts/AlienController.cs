@@ -5,7 +5,12 @@ using System.Collections;
 public class AlienController : MonoBehaviour
 {
 
-	public GameObject alienPrefab;
+	public GameObject alien01;
+	public GameObject alien02;
+	public GameObject alien03;
+	public GameObject alien04;
+	public GameObject alien05;
+
 	public ScoreCounter scoreCounter;
 	public GameObject playerContainer;
 	public GameObject beamPrefab;
@@ -14,7 +19,6 @@ public class AlienController : MonoBehaviour
 
 	// Alien の数
 	private int horizontalLength = 8;
-	private int verticalLength = 5;
 
 	// Alien が動くタイミングを制御するための変数
 	private float moveInterval = 1f;
@@ -61,10 +65,14 @@ public class AlienController : MonoBehaviour
 	// Alien の生成
 	void GenerateAliens ()
 	{
+		StageDataManager.Stage stage = StageDataManager.instance.GetStage ();
+		Debug.Log (stage.level);
+
 		// （横は中心、縦は上）を起点として Alien を配置していく
 		for (int x = 1; x <= horizontalLength; x++) {
-			for (int y = 1; y <= verticalLength; y++) {
-				GameObject alien = (GameObject)Instantiate (alienPrefab);
+			for (int y = 1; y <= stage.aliens.Count; y++) {
+				GameObject prefab = GetAlienPrefabWithAlien (stage.aliens [y - 1]);
+				GameObject alien = (GameObject)Instantiate (prefab);
 				Vector2 pos = transform.position;
 				pos.x += alien.transform.localScale.x * (x - ((float)(horizontalLength + 1) / 2)) * 1f;
 				pos.y -= alien.transform.localScale.y * (y - 1) * 1f;
@@ -103,6 +111,24 @@ public class AlienController : MonoBehaviour
 
 			transform.position = assumedPos;
 
+		}
+	}
+
+	// Alien のレベルに応じてプレハブを返す
+	GameObject GetAlienPrefabWithAlien(long level) {
+		switch (level) {
+		case 1:
+			return alien01;
+		case 2:
+			return alien02;
+		case 3:
+			return alien03;
+		case 4:
+			return alien04;
+		case 5:
+			return alien05;
+		default:
+			return alien01;
 		}
 	}
 
