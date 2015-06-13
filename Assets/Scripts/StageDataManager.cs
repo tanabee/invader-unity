@@ -5,9 +5,9 @@ using MiniJSON;
 
 public class StageDataManager : MonoBehaviour {
 
-	public List<Stage> stages;
-
+	private List<Stage> stages;
 	static public StageDataManager instance;
+	public long currentLevel;
 
 	// ステージの設定データ
 	[System.Serializable]
@@ -38,6 +38,16 @@ public class StageDataManager : MonoBehaviour {
 		}
 	}
 
+	// 現在のステージ情報を返す
+	public Stage GetStage() {
+		foreach (Stage stage in stages) {
+			if (stage.level == currentLevel) {
+				return stage;
+			}
+		}
+	}
+
+	// ステージ情報を JSON ファイルから取得
 	void LoadStages () {
 
 		stages = new List<Stage> ();
@@ -56,9 +66,6 @@ public class StageDataManager : MonoBehaviour {
 				var alien = (long)alienObj;
 				stage.aliens.Add(alien);
 			}
-
-			Debug.Log (stage.level);
-			Debug.Log (stage.aliens);
 
 			// フレンドデータをリストに追加
 			stages.Add (stage);
