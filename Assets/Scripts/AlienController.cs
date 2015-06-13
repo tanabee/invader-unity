@@ -13,7 +13,6 @@ public class AlienController : MonoBehaviour
 
 	public ScoreCounter scoreCounter;
 	public GameObject playerContainer;
-	public GameObject beamPrefab;
 
 	private Vector2 startPos;
 
@@ -146,7 +145,7 @@ public class AlienController : MonoBehaviour
 			}
 		}
 
-		Instantiate (beamPrefab, closestEnemy.transform.position, Quaternion.identity);
+		closestEnemy.GetComponent<Alien> ().ShootBeam ();
 	}
 
 	// 今動くべきかを返す

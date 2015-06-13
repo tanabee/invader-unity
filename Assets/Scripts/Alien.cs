@@ -7,6 +7,12 @@ public class Alien : MonoBehaviour {
 	public AudioClip clip;
 	public int life;
 	public int point;
+	public float beamSpeed;
+	public GameObject beamPrefab;
+
+	public void ShootBeam() {
+		GameObject beam = (GameObject)Instantiate (beamPrefab, transform.position, Quaternion.identity);
+	}
 
 	void OnTriggerEnter2D(Collider2D collider) {
 
