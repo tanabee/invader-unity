@@ -65,7 +65,6 @@ public class AlienController : MonoBehaviour
 	void GenerateAliens ()
 	{
 		StageDataManager.Stage stage = StageDataManager.instance.GetStage ();
-		Debug.Log (stage.level);
 
 		// （横は中心、縦は上）を起点として Alien を配置していく
 		for (int x = 1; x <= horizontalLength; x++) {

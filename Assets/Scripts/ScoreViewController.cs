@@ -10,49 +10,67 @@ public class ScoreViewController : MonoBehaviour {
 	public Text highScoreLabel;
 	public Button retryButton;
 
+	private float time = 0.0f;
+	private int enemyScore;
+	private int timeScore;
+	private int totalScore;
+	private int highScore;
+	private bool isNewScore;
+	private string scoreKey;
+
 	// Use this for initialization
 	void Start () {
+		scoreKey = "score-" + StageDataManager.instance.currentLevel.ToString ();
 
-		// スコア表示
-		ShowScore ();
+		// スコア計算
+		CalculateScore ();
 
 		// リトライボタンのイベント設定
 		retryButton.onClick.AddListener (OnButtonClick);
 	}
 
-	// スコア表示
+	void Update () {
+		ShowScore ();
+	}
+
 	void ShowScore () {
-
-		string scoreKey = "score-" + StageDataManager.instance.currentLevel.ToString ();
-
-		// ハイスコア表示
-		int highScore = PlayerPrefs.GetInt (scoreKey);
-		highScoreLabel.text = highScore.ToString();
+		time += Time.deltaTime;
 
 		// 撃破ポイントを表示
-		enemyScoreLabel.text = DataManager.instance.score.ToString();
+		enemyScoreLabel.text = ((int)(Mathf.Lerp(0, (float)enemyScore, time))).ToString ();
 
-		int timeScore = 0;
+		// タイムスコアを表示
+		timeScoreLabel.text = ((int)Mathf.Lerp(0, (float)timeScore, time - 1.0f)).ToString ();
+
+		// タイムスコアを表示
+		totalScoreLabel.text = ((int)Mathf.Lerp(0, (float)totalScore, time - 2.0f)).ToString ();
+	}
+
+	// スコア計算
+	void CalculateScore () {
+
+		enemyScore = DataManager.instance.score;
+
 		if (DataManager.instance.isCleared) {
 			// クリアタイムのスコアを表示
 			timeScore = (180 - (int)DataManager.instance.playTime) * 10;
 			if (timeScore < 0) {
 				timeScore = 0;
 			}
-			timeScoreLabel.text = timeScore.ToString ();
 		} else {
-			timeScoreLabel.text = "0";
+			timeScore = 0;
 		}
 
-		// トータルのスコアを表示
-		int totalScore = DataManager.instance.score + timeScore;
-		totalScoreLabel.text = (totalScore).ToString();
+		// トータルのスコアを計算
+		totalScore = enemyScore + timeScore;
+
+		// ハイスコア
+		int highScore = PlayerPrefs.GetInt (scoreKey);
+		highScoreLabel.text = highScore.ToString ();
 
 		// ハイスコアだったら
 		if (totalScore > highScore) {
-			// TODO: ここをアニメーション付きでやりたい
-			// ハイスコア更新
-			highScoreLabel.text = totalScore.ToString();
+			isNewScore = true;
 
 			// ローカル保存
 			PlayerPrefs.SetInt (scoreKey, totalScore);
