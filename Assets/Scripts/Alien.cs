@@ -12,6 +12,7 @@ public class Alien : MonoBehaviour {
 
 	public void ShootBeam() {
 		GameObject beam = (GameObject)Instantiate (beamPrefab, transform.position, Quaternion.identity);
+		beam.GetComponent<Beam> ().speed = beamSpeed;
 	}
 
 	void OnTriggerEnter2D(Collider2D collider) {
