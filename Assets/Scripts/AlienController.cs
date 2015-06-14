@@ -23,8 +23,9 @@ public class AlienController : MonoBehaviour
 	private float moveInterval = 1f;
 	private float moveTimer = 0;
 	// ビームを発射するタイミング
-	private float shootInterval = 3f;
-	private float shootTimer = 0;
+	private float minShootInterval = 1f;
+	private float maxShootInterval = 3f;
+	private float shootTimer = 3f;
 
 	// 一度に移動する距離
 	private float verticalDistance = 0.2f;
@@ -163,10 +164,10 @@ public class AlienController : MonoBehaviour
 	// 今打つべきかを返す
 	bool shouldShoot ()
 	{
-		shootTimer += Time.deltaTime;
+		shootTimer -= Time.deltaTime;
 
-		if (shootTimer > shootInterval) {
-			shootTimer = 0;
+		if (shootTimer <= 0.0f) {
+			shootTimer = Random.Range (minShootInterval, maxShootInterval);
 			return true;
 		} else {
 			return false;
