@@ -10,6 +10,7 @@ public class ScoreViewController : MonoBehaviour {
 	public Text timeScoreLabel;
 	public Text totalScoreLabel;
 	public Text highScoreLabel;
+	public Text newScoreLabel;
 	public Button retryButton;
 
 	private int enemyScore;
@@ -99,14 +100,21 @@ public class ScoreViewController : MonoBehaviour {
 			if (animationRatio >= 1.0f) {
 				animationTime = 0.0f;
 				scoreAnimationStatus = ScoreAnimationStatus.HighScore;
+				if (isNewScore) {
+					soundManager.PlayClip (countUpClip);
+				}
 			}
 			break;
 
 		case ScoreAnimationStatus.HighScore:
 			// ハイスコア更新の場合
 			if (isNewScore) {
-				highScoreLabel.text = totalScore.ToString ();
-				//highScoreLabel.color = 
+				highScoreLabel.text = ((int)Mathf.Lerp((float)highScore, (float)totalScore, animationRatio)).ToString ();
+				if (animationRatio >= 1.0f) {
+					highScoreLabel.color = Color.yellow;
+					newScoreLabel.gameObject.SetActive(true);
+					scoreAnimationStatus = ScoreAnimationStatus.Ended;
+				}
 			}
 			break;
 
@@ -134,7 +142,7 @@ public class ScoreViewController : MonoBehaviour {
 		totalScore = enemyScore + timeScore;
 
 		// ハイスコア
-		int highScore = PlayerPrefs.GetInt (scoreKey);
+		highScore = PlayerPrefs.GetInt (scoreKey);
 		highScoreLabel.text = highScore.ToString ();
 
 		// ハイスコアだったら
