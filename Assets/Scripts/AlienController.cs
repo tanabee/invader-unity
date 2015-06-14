@@ -20,7 +20,7 @@ public class AlienController : MonoBehaviour
 	private int horizontalLength = 8;
 
 	// Alien が動くタイミングを制御するための変数
-	private float moveInterval = 1f;
+	public float moveInterval = 1f;
 	private float moveTimer = 0;
 	// ビームを発射するタイミング
 	private float minShootInterval = 1f;
@@ -46,7 +46,7 @@ public class AlienController : MonoBehaviour
 
 	// Update is called once per frame
 	void Update () {
-		GameObject[] enemies = GameObject.FindGameObjectsWithTag ("Enemy");
+		GameObject[] enemies = GameObject.FindGameObjectsWithTag ("Alien");
 		if (enemies.Length == 0) {
 			DataManager.instance.isCleared = true;
 			Application.LoadLevel ("Score");
