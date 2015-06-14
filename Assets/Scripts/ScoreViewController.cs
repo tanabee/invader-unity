@@ -4,13 +4,14 @@ using System.Collections;
 
 public class ScoreViewController : MonoBehaviour {
 
+	public AudioClip countUpClip;
+
 	public Text enemyScoreLabel;
 	public Text timeScoreLabel;
 	public Text totalScoreLabel;
 	public Text highScoreLabel;
 	public Button retryButton;
 
-	private float time = 0.0f;
 	private int enemyScore;
 	private int timeScore;
 	private int totalScore;
@@ -18,9 +19,25 @@ public class ScoreViewController : MonoBehaviour {
 	private bool isNewScore;
 	private string scoreKey;
 
+	private SoundManager soundManager;
+
+	// スコアアニメーションの状態
+	private enum ScoreAnimationStatus {
+		NotStarted,
+		EnemyScore,
+		TimeScore,
+		TotalScore,
+		HighScore,
+		Ended
+	}
+	private ScoreAnimationStatus scoreAnimationStatus = ScoreAnimationStatus.NotStarted;
+	// スコアアニメーションを制御するための時間
+	private float animationTime = 0.0f;
+
 	// Use this for initialization
 	void Start () {
 		scoreKey = "score-" + StageDataManager.instance.currentLevel.ToString ();
+		soundManager = GameObject.FindWithTag ("SoundManager").GetComponent<SoundManager> ();
 
 		// スコア計算
 		CalculateScore ();
@@ -30,27 +47,71 @@ public class ScoreViewController : MonoBehaviour {
 	}
 
 	void Update () {
-		ShowScore ();
+		ShowScoreWithAnimation ();
 	}
 
-	void ShowScore () {
-		time += Time.deltaTime;
+	void ShowScoreWithAnimation () {
+		animationTime += Time.deltaTime;
+		// ラベル毎に要するアニメーションの時間
+		float animationTimePerLabel = 0.6f;
+		float animationRatio = animationTime / animationTimePerLabel;
 
-		// 撃破ポイントを表示
-		enemyScoreLabel.text = ((int)(Mathf.Lerp(0, (float)enemyScore, time))).ToString ();
+		switch (scoreAnimationStatus) {
 
-		// タイムスコアを表示
-		timeScoreLabel.text = ((int)Mathf.Lerp(0, (float)timeScore, time - 1.0f)).ToString ();
+		case ScoreAnimationStatus.NotStarted:
+			animationTime = 0.0f;
+			scoreAnimationStatus = ScoreAnimationStatus.EnemyScore;
 
-		// トータルスコアを表示
-		totalScoreLabel.text = ((int)Mathf.Lerp(0, (float)totalScore, time - 2.0f)).ToString ();
+			if (enemyScore != 0) {
+				soundManager.PlayClip (countUpClip);
+			}
+			break;
 
-		// トータルスコア表示が完了している場合
-		if (int.Parse (totalScoreLabel.text) == totalScore) {
+		case ScoreAnimationStatus.EnemyScore:
+			// 撃破ポイントを表示
+			enemyScoreLabel.text = ((int)(Mathf.Lerp (0, (float)enemyScore, animationRatio))).ToString ();
+			if (animationRatio >= 1.0f) {
+				animationTime = 0.0f;
+				scoreAnimationStatus = ScoreAnimationStatus.TimeScore;
+
+				if (timeScore != 0) {
+					soundManager.PlayClip (countUpClip);
+				}
+			}
+			break;
+
+		case ScoreAnimationStatus.TimeScore:
+			// タイムスコアを表示
+			timeScoreLabel.text = ((int)Mathf.Lerp(0, (float)timeScore, animationRatio)).ToString ();
+			if (animationRatio >= 1.0f) {
+				animationTime = 0.0f;
+				scoreAnimationStatus = ScoreAnimationStatus.TotalScore;
+
+				if (totalScore != 0) {
+					soundManager.PlayClip (countUpClip);
+				}
+			}
+			break;
+
+		case ScoreAnimationStatus.TotalScore:
+			// トータルスコアを表示
+			totalScoreLabel.text = ((int)Mathf.Lerp(0, (float)totalScore, animationRatio)).ToString ();
+			if (animationRatio >= 1.0f) {
+				animationTime = 0.0f;
+				scoreAnimationStatus = ScoreAnimationStatus.HighScore;
+			}
+			break;
+
+		case ScoreAnimationStatus.HighScore:
 			// ハイスコア更新の場合
 			if (isNewScore) {
 				highScoreLabel.text = totalScore.ToString ();
+				//highScoreLabel.color = 
 			}
+			break;
+
+		case ScoreAnimationStatus.Ended:
+			return;
 		}
 	}
 
