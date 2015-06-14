@@ -19,6 +19,7 @@ public class ScoreViewController : MonoBehaviour {
 	private int highScore;
 	private bool isNewScore;
 	private string scoreKey;
+	private string clearedKey;
 
 	private SoundManager soundManager;
 
@@ -38,6 +39,7 @@ public class ScoreViewController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		scoreKey = "score-" + StageDataManager.instance.currentLevel.ToString ();
+		clearedKey = "cleared-" + StageDataManager.instance.currentLevel.ToString ();
 		soundManager = GameObject.FindWithTag ("SoundManager").GetComponent<SoundManager> ();
 
 		// スコア計算
@@ -134,6 +136,9 @@ public class ScoreViewController : MonoBehaviour {
 			if (timeScore < 0) {
 				timeScore = 0;
 			}
+
+			PlayerPrefs.SetInt (clearedKey, 1);
+
 		} else {
 			timeScore = 0;
 		}
