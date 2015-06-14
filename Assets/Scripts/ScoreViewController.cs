@@ -42,8 +42,16 @@ public class ScoreViewController : MonoBehaviour {
 		// タイムスコアを表示
 		timeScoreLabel.text = ((int)Mathf.Lerp(0, (float)timeScore, time - 1.0f)).ToString ();
 
-		// タイムスコアを表示
+		// トータルスコアを表示
 		totalScoreLabel.text = ((int)Mathf.Lerp(0, (float)totalScore, time - 2.0f)).ToString ();
+
+		// トータルスコア表示が完了している場合
+		if (int.Parse (totalScoreLabel.text) == totalScore) {
+			// ハイスコア更新の場合
+			if (isNewScore) {
+				highScoreLabel.text = totalScore.ToString ();
+			}
+		}
 	}
 
 	// スコア計算
