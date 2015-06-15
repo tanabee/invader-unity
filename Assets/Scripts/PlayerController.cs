@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler {
 
+	public GoogleAnalyticsV3 googleAnalytics;
+
 	private GameObject player;
 	public GameObject playerPrefab;
 	public GameObject playerContainer;
@@ -22,6 +24,9 @@ public class PlayerController : MonoBehaviour, IBeginDragHandler, IEndDragHandle
 		player.transform.SetParent (playerContainer.transform);
 
 		fireButton.onClick.AddListener (OnButtonClick);
+
+		googleAnalytics.DispatchHits ();
+		googleAnalytics.LogScreen("Play-Level" + StageDataManager.instance.GetStage ().level);
 	}
 
 	void Update () {

@@ -3,6 +3,13 @@ using System.Collections;
 
 public class StartViewController : MonoBehaviour {
 
+	public GoogleAnalyticsV3 googleAnalytics;
+
+	void Start() {
+		googleAnalytics.DispatchHits ();
+		googleAnalytics.LogScreen("Start");
+	}
+
 	public void TransitionStageSelectScene() {
 		Application.LoadLevel ("StageSelect");
 	}

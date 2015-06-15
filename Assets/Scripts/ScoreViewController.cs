@@ -4,6 +4,8 @@ using System.Collections;
 
 public class ScoreViewController : MonoBehaviour {
 
+	public GoogleAnalyticsV3 googleAnalytics;
+
 	public AudioClip countUpClip;
 
 	public Text enemyScoreLabel;
@@ -47,6 +49,9 @@ public class ScoreViewController : MonoBehaviour {
 
 		// リトライボタンのイベント設定
 		retryButton.onClick.AddListener (OnButtonClick);
+
+		googleAnalytics.DispatchHits ();
+		googleAnalytics.LogScreen("Score");
 	}
 
 	void Update () {

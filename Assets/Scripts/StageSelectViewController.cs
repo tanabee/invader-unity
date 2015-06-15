@@ -4,6 +4,8 @@ using System.Collections;
 
 public class StageSelectViewController : MonoBehaviour {
 
+	public GoogleAnalyticsV3 googleAnalytics;
+
 	// Use this for initialization
 	void Start () {
 		GameObject[] buttons = GameObject.FindGameObjectsWithTag ("StageButton");
@@ -15,5 +17,8 @@ public class StageSelectViewController : MonoBehaviour {
 				buttonText.color = Color.yellow;
 			}
 		}
+
+		googleAnalytics.DispatchHits ();
+		googleAnalytics.LogScreen("StageSelect");
 	}
 }
