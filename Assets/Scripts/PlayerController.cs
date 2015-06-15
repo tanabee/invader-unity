@@ -33,9 +33,9 @@ public class PlayerController : MonoBehaviour, IBeginDragHandler, IEndDragHandle
 
 		if (dragging) {
 			// 画面左下のワールド座標をビューポートから取得
-			Vector2 min = Camera.main.ViewportToWorldPoint (new Vector2 (0.05f, 0));
+			Vector2 min = Camera.main.ViewportToWorldPoint (new Vector2 (0.15f, 0));
 			// 画面右上のワールド座標をビューポートから取得
-			Vector2 max = Camera.main.ViewportToWorldPoint (new Vector2 (0.95f, 1));
+			Vector2 max = Camera.main.ViewportToWorldPoint (new Vector2 (0.85f, 1));
 
 			Vector2 pos = playerContainer.transform.position;
 			pos.x += dragDirection * speed * Time.deltaTime;

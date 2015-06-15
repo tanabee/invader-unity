@@ -17,10 +17,10 @@ public class AlienController : MonoBehaviour
 	private Vector2 startPos;
 
 	// Alien の数
-	private int horizontalLength = 8;
+	private int horizontalLength = 10;
 
 	// Alien が動くタイミングを制御するための変数
-	public float moveInterval = 1f;
+	public float moveInterval = 0.8f;
 	private float moveTimer = 0;
 	// ビームを発射するタイミング
 	private float minShootInterval = 1f;
