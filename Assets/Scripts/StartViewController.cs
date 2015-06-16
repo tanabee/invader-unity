@@ -24,7 +24,7 @@ public class StartViewController : MonoBehaviour {
 	}
 
 	public void Share() {
-		string tweet = "invader game";// TODO: 公開後に URL セット
+		string tweet = "#retro_invader_game https://play.google.com/store/apps/details?id=jp.monopocket.Invader";
 		Application.OpenURL("https://twitter.com/intent/tweet?text=" + WWW.EscapeURL(tweet));
 	}
 }
