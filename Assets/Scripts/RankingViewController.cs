@@ -9,4 +9,8 @@ public class RankingViewController : MonoBehaviour {
 		googleAnalytics.DispatchHits ();
 		googleAnalytics.LogScreen("Ranking");
 	}
+
+	public void TransitionStageSelectScene() {
+		Application.LoadLevel ("StageSelect");
+	}
 }
