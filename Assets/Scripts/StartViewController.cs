@@ -11,6 +11,11 @@ public class StartViewController : MonoBehaviour {
 	}
 
 	public void TransitionStageSelectScene() {
+		// ユーザー登録していなければ登録画面に遷移
+		if (PlayerPrefs.GetString ("user_id") == "") {
+			Application.LoadLevel ("Register");
+			return;
+		}
 		Application.LoadLevel ("StageSelect");
 	}
 
