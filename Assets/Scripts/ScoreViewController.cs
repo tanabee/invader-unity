@@ -191,9 +191,11 @@ public class ScoreViewController : MonoBehaviour {
 		// 送信成功時
 		if (www.error == null && !string.IsNullOrEmpty(www.text)) {
 			Debug.Log (www.text);
+			yield break;
 		// エラー時
 		} else {
 			Debug.Log (www.error);
+			yield break;
 		}
 	}
 }

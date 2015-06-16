@@ -38,6 +38,8 @@ public class RegisterViewController : MonoBehaviour {
 
 		yield return www;
 
+		startButton.interactable = true;
+
 		// 登録成功時
 		if (www.error == null && !string.IsNullOrEmpty(www.text)) {
 
@@ -47,6 +49,7 @@ public class RegisterViewController : MonoBehaviour {
 			PlayerPrefs.SetString("user_name", (string)dict["name"]);
 
 			Application.LoadLevel ("StageSelect");
+			yield break;
 
 		// エラー時
 		} else {
@@ -58,6 +61,7 @@ public class RegisterViewController : MonoBehaviour {
 			} else {
 				errorLabel.text = "connection failed";
 			}
+			yield break;
 
 		}
 	}
