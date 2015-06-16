@@ -26,7 +26,8 @@ public class RegisterViewController : MonoBehaviour {
 
 	IEnumerator PostUser (string name) {
 		var postDict = new Dictionary<string, string> () {
-			{"name",name}
+			{"name",name},
+			{"token", "jaiojdfoajisdfoa133joiqwjeirqwow4q534"}
 		};
 		var headers = new Dictionary<string, string> () {
 			{"Content-Type", "application/json; charset=UTF-8"}
