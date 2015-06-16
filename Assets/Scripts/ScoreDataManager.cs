@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class DataManager : MonoBehaviour {
+public class ScoreDataManager : MonoBehaviour {
 
 	// スコア
 	public int score;
@@ -13,7 +13,7 @@ public class DataManager : MonoBehaviour {
 	public bool isCleared;
 
 	// 1つしかないインスタンス
-	static public DataManager instance;
+	static public ScoreDataManager instance;
 
 	void Awake() {
 		// すでに、DataManager が生成されているか
@@ -33,5 +33,16 @@ public class DataManager : MonoBehaviour {
 			// 自分自身（新規に追加されたオブジェクト）を消す
 			Destroy (gameObject);
 		}
+	}
+
+	// ハイスコアの合計を返す
+	public int totalScore () {
+		int score = 0;
+		// FIXME: level 上限は config から取る
+		for (int level = 1; level <= 10; level++) {
+			string scoreKey = "score-" + level.ToString();
+			score += PlayerPrefs.GetInt (scoreKey);
+		}
+		return score;
 	}
 }

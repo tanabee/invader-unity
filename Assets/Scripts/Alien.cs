@@ -33,7 +33,7 @@ public class Alien : MonoBehaviour {
 			SoundManager soundManager = GameObject.FindWithTag ("SoundManager").GetComponent<SoundManager> ();
 			soundManager.PlayClip (clip);
 
-			DataManager.instance.score += point;
+			ScoreDataManager.instance.score += point;
 
 			Destroy (gameObject);
 		}

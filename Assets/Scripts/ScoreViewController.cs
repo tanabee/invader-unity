@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using System.Text;
 using System.Collections;
+using System.Collections.Generic;
+using MiniJSON;
 
 public class ScoreViewController : MonoBehaviour {
 
@@ -133,11 +136,11 @@ public class ScoreViewController : MonoBehaviour {
 	// スコア計算
 	void CalculateScore () {
 
-		enemyScore = DataManager.instance.score;
+		enemyScore = ScoreDataManager.instance.score;
 
-		if (DataManager.instance.isCleared) {
+		if (ScoreDataManager.instance.isCleared) {
 			// クリアタイムのスコアを表示
-			timeScore = (180 - (int)DataManager.instance.playTime) * 10;
+			timeScore = (180 - (int)ScoreDataManager.instance.playTime) * 10;
 			if (timeScore < 0) {
 				timeScore = 0;
 			}
@@ -161,10 +164,36 @@ public class ScoreViewController : MonoBehaviour {
 
 			// ローカル保存
 			PlayerPrefs.SetInt (scoreKey, totalScore);
+
+			StartCoroutine (PostScore());
 		}
 	}
 
 	void OnButtonClick () {
 		Application.LoadLevel ("Start");
+	}
+
+	IEnumerator PostScore () {
+
+		var postDict = new Dictionary<string, int> () {
+			{"score", ScoreDataManager.instance.totalScore()}
+		};
+		var headers = new Dictionary<string, string> () {
+			{"Content-Type", "application/json; charset=UTF-8"}
+		};
+		string url = "http://invader-api.herokuapp.com/v1/user/" + PlayerPrefs.GetString("user_id") + "/score";
+		string postJson = (string)MiniJSON.Json.Serialize (postDict);
+		byte[] bytes = Encoding.UTF8.GetBytes(postJson);
+		WWW www = new WWW(url, bytes, headers);
+
+		yield return www;
+
+		// 送信成功時
+		if (www.error == null && !string.IsNullOrEmpty(www.text)) {
+			Debug.Log (www.text);
+		// エラー時
+		} else {
+			Debug.Log (www.error);
+		}
 	}
 }

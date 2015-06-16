@@ -14,6 +14,6 @@ public class PlayTimer : MonoBehaviour {
 		string timeStr = minutes.ToString () + ":" + seconds.ToString ("00");
 		timeLabel.text = timeStr;
 
-		DataManager.instance.playTime = time;
+		ScoreDataManager.instance.playTime = time;
 	}
 }

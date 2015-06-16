@@ -42,7 +42,7 @@ public class UFO : MonoBehaviour {
 			soundManager.PlayClip (hitClip);
 			soundManager.StopBgClip ();
 
-			DataManager.instance.score += point;
+			ScoreDataManager.instance.score += point;
 
 			Destroy (collider.gameObject);
 			Destroy (gameObject);
