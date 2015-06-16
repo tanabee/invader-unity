@@ -9,6 +9,8 @@ public class RegisterViewController : MonoBehaviour {
 
 	public GoogleAnalyticsV3 googleAnalytics;
 	public Text nicknameText;
+	public Text errorLabel;
+	public Button startButton;
 
 	void Start () {
 		googleAnalytics.DispatchHits ();
@@ -19,6 +21,7 @@ public class RegisterViewController : MonoBehaviour {
 	public void StartButtonClicked () {
 		string nickname = nicknameText.text;
 		StartCoroutine (PostUser(nickname));
+		startButton.interactable = false;
 	}
 
 	IEnumerator PostUser (string name) {
@@ -35,6 +38,7 @@ public class RegisterViewController : MonoBehaviour {
 
 		yield return www;
 
+		// 登録成功時
 		if (www.error == null && !string.IsNullOrEmpty(www.text)) {
 
 			string json = www.text;
@@ -43,8 +47,18 @@ public class RegisterViewController : MonoBehaviour {
 			PlayerPrefs.SetString("user_name", (string)dict["name"]);
 
 			Application.LoadLevel ("StageSelect");
+
+		// エラー時
 		} else {
-			Debug.Log("Post Failure");          
+
+			Debug.Log (www.error);
+			// FIXME: ステータスコードで分岐できるようにする
+			if (www.error == "400 Bad Request\r") {
+				errorLabel.text = "please input another name";
+			} else {
+				errorLabel.text = "connection failed";
+			}
+
 		}
 	}
 }
