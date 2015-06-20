@@ -5,6 +5,9 @@ using System.Collections;
 using System.Collections.Generic;
 using MiniJSON;
 
+/**
+ * ユーザー登録ページ全般の管理クラス
+ */
 public class RegisterViewController : MonoBehaviour {
 
 	public GoogleAnalyticsV3 googleAnalytics;
@@ -24,6 +27,7 @@ public class RegisterViewController : MonoBehaviour {
 		startButton.interactable = false;
 	}
 
+	// ユーザー登録
 	IEnumerator PostUser (string name) {
 		var postDict = new Dictionary<string, string> () {
 			{"name",name}
@@ -45,6 +49,8 @@ public class RegisterViewController : MonoBehaviour {
 
 			string json = www.text;
 			var dict = Json.Deserialize (json) as Dictionary<string, object>;
+
+			// ローカルにユーザー情報を保存
 			PlayerPrefs.SetString("user_id", (string)dict["_id"]);
 			PlayerPrefs.SetString("user_name", (string)dict["name"]);
 

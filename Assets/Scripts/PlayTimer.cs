@@ -2,6 +2,9 @@
 using UnityEngine.UI;
 using System.Collections;
 
+/**
+ * プレイシーンのプレイ時間表示用のクラス
+ */
 public class PlayTimer : MonoBehaviour {
 
 	public Text timeLabel;

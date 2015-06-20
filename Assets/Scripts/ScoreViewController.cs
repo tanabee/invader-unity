@@ -5,6 +5,10 @@ using System.Collections;
 using System.Collections.Generic;
 using MiniJSON;
 
+/**
+ * スコアページ全般の管理クラス
+ * データをもとにスコア表示を行う
+ */
 public class ScoreViewController : MonoBehaviour {
 
 	public GoogleAnalyticsV3 googleAnalytics;

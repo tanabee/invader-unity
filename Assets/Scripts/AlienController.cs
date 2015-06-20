@@ -2,6 +2,10 @@
 using UnityEngine.UI;
 using System.Collections;
 
+/**
+ * 宇宙人全体を管理するクラス
+ * 宇宙人群の生成、移動、ビームを打つタイミングなどを制御する
+ */
 public class AlienController : MonoBehaviour
 {
 

@@ -2,6 +2,9 @@
 using UnityEngine.UI;
 using System.Collections;
 
+/**
+ * プレイ画面のリアルタイムスコア表示の管理クラス
+ */
 public class ScoreCounter : MonoBehaviour {
 
 	public Text scoreText;

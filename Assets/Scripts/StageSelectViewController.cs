@@ -5,6 +5,9 @@ using System.Collections;
 using System.Collections.Generic;
 using MiniJSON;
 
+/**
+ * ステージ選択ページ全般の管理クラス
+ */
 public class StageSelectViewController : MonoBehaviour {
 
 	public GoogleAnalyticsV3 googleAnalytics;
@@ -32,6 +35,7 @@ public class StageSelectViewController : MonoBehaviour {
 		StartCoroutine (LoadRankingMe());
 	}
 
+	// 自分のランキングを取得して表示
 	public IEnumerator LoadRankingMe () {
 
 		string url = "http://invader-api.herokuapp.com/v1/ranking/me?score=" + ScoreDataManager.instance.totalScore().ToString();

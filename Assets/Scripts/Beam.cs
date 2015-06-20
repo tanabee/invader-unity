@@ -1,6 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/**
+ * ビームを管理するクラス
+ * ビームの発射と削除の処理をする
+ */
 public class Beam : MonoBehaviour {
 
 	public float speed;

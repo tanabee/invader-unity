@@ -1,6 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/**
+ * スコアデータを管理するクラス
+ * シーン間でデータを維持できるように単一の instance しか持たない
+ */
 public class ScoreDataManager : MonoBehaviour {
 
 	// スコア

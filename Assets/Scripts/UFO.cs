@@ -1,6 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/**
+ * UFO の管理クラス
+ * UFO の移動、撃破の処理を行う
+ */
 public class UFO : MonoBehaviour {
 
 	// 出現時の音
@@ -15,7 +19,6 @@ public class UFO : MonoBehaviour {
 	SoundManager soundManager;
 
 	void Start () {
-		Debug.Log ("start");
 		soundManager = GameObject.FindWithTag ("SoundManager").GetComponent<SoundManager> ();
 		soundManager.PlayBgClip (appearanceClip);
 	}

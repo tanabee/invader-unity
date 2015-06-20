@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/**
+ * スタートページ全般の管理クラス
+ */
 public class StartViewController : MonoBehaviour {
 
 	public GoogleAnalyticsV3 googleAnalytics;
@@ -9,7 +12,7 @@ public class StartViewController : MonoBehaviour {
 		googleAnalytics.DispatchHits ();
 		googleAnalytics.LogScreen("Start");
 	}
-
+		
 	public void TransitionStageSelectScene() {
 		// ユーザー登録していなければ登録画面に遷移
 		if (PlayerPrefs.GetString ("user_id") == "") {

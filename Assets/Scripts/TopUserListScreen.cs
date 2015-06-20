@@ -2,12 +2,14 @@
 using UnityEngine.UI;
 using System.Collections;
 
+/**
+ * ランキングページでトップのユーザーを表示するためのクラス
+ */
 public class TopUserListScreen : MonoBehaviour {
 
 	public UserData userData;
 	public GameObject userNodePrefab;
 	public Transform nodeContainer;
-
 
 	IEnumerator Start () {
 		yield return StartCoroutine (userData.Load());

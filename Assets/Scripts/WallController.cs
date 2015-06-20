@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/**
+ * プレイ画面の壁の生成をするクラス
+ */
 public class WallController : MonoBehaviour {
 
 	public GameObject wallPrefab;
@@ -15,6 +18,7 @@ public class WallController : MonoBehaviour {
 		GenerateWalls ();
 	}
 
+	// 壁の生成を行う
 	void GenerateWalls () {
 
 		// 壁グループごとにループ
@@ -32,7 +36,6 @@ public class WallController : MonoBehaviour {
 					wall.transform.SetParent (transform);
 				}
 			}
-			
 
 		}
 

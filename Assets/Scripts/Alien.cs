@@ -2,6 +2,10 @@
 using UnityEngine.UI;
 using System.Collections;
 
+/**
+ * 宇宙人を管理するクラス
+ * ビームの発射や撃破を処理する
+ */
 public class Alien : MonoBehaviour {
 
 	public AudioClip clip;

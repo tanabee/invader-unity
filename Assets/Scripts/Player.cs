@@ -1,6 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/**
+ * プレイヤー（自機）の管理クラス
+ * 撃破時の処理をする
+ */
 public class Player : MonoBehaviour {
 
 	public AudioClip clip;

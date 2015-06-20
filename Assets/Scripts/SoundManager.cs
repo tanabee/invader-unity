@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/**
+ * サウンドを管理するクラス
+ */
 public class SoundManager : MonoBehaviour {
 
 	public AudioSource seSource;

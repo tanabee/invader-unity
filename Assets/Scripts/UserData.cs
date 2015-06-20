@@ -4,6 +4,10 @@ using System.Collections;
 using System.Collections.Generic;
 using MiniJSON;
 
+/**
+ * ユーザー情報の管理クラス
+ * ユーザー情報の API 取得、パースの処理を行う
+ */
 public class UserData : MonoBehaviour {
 
 	string url = "http://invader-api.herokuapp.com/v1/ranking";

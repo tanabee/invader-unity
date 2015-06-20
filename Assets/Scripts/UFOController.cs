@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/**
+ * UFO の出現処理を管理クラス
+ */
 public class UFOController : MonoBehaviour {
 
 	public GameObject UFOPrefab;

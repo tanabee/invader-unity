@@ -3,6 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using MiniJSON;
 
+/**
+ * ステージ情報を管理するクラス
+ * シーン間でデータを共有できるように単一のインスタンスしか持たない
+ */
 public class StageDataManager : MonoBehaviour {
 
 	private List<Stage> stages;

@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/**
+ * ステージ選択を管理するクラス
+ */
 public class StageSelector : MonoBehaviour {
 
 	// ステージ選択時

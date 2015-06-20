@@ -3,6 +3,10 @@ using System.Collections;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
+/**
+ * プレイヤー（自機）を管理するクラス
+ * ドラッグによる移動制御を行う
+ */
 public class PlayerController : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler {
 
 	public GoogleAnalyticsV3 googleAnalytics;
@@ -70,6 +74,7 @@ public class PlayerController : MonoBehaviour, IBeginDragHandler, IEndDragHandle
 		Instantiate (beamPrefab, playerContainer.transform.position, Quaternion.identity);
 	}
 
+	// FIXME: このイベントハンドリングと処理は別クラス化したほうが良さそう
 	void OnButtonClick () {
 		ShootBeam ();
 
