@@ -21,6 +21,7 @@ public class Alien : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D collider) {
 
+		// プレイヤーのビームと衝突した場合
 		if (collider.gameObject.tag == "PlayerBeam") {
 			
 			Destroy (collider.gameObject);
