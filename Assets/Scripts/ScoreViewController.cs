@@ -176,8 +176,7 @@ public class ScoreViewController : MonoBehaviour {
 	IEnumerator PostScore () {
 
 		var postDict = new Dictionary<string, object> () {
-			{"score", ScoreDataManager.instance.totalScore()},
-			{"token", "jaiojdfoajisdfoa133joiqwjeirqwow4q534"}
+			{"score", ScoreDataManager.instance.totalScore()}
 		};
 		var headers = new Dictionary<string, string> () {
 			{"Content-Type", "application/json; charset=UTF-8"}
