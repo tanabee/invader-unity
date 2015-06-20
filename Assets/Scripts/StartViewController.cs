@@ -27,7 +27,7 @@ public class StartViewController : MonoBehaviour {
 	}
 
 	public void Share() {
-		string tweet = "#retro_invader_game https://play.google.com/store/apps/details?id=jp.monopocket.Invader";
+		string tweet = "Let's play Cosmic Invaders together! (android game app) #cosmic_invaders https://play.google.com/store/apps/details?id=jp.monopocket.Invader";
 		Application.OpenURL("https://twitter.com/intent/tweet?text=" + WWW.EscapeURL(tweet));
 	}
 }
