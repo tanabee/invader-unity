@@ -8,11 +8,21 @@ using System.Collections;
 public class Player : MonoBehaviour {
 
 	public AudioClip clip;
+	public GameObject destroyPrefab;
 
 	void OnTriggerEnter2D(Collider2D collider) {
 		if (collider.gameObject.tag == "AlienBeam" || collider.gameObject.tag == "Alien") {
 			SoundManager soundManager = GameObject.FindWithTag ("SoundManager").GetComponent<SoundManager> ();
 			soundManager.PlayClip (clip);
+
+			Instantiate (destroyPrefab, transform.position, Quaternion.identity);
+
+			// 自機を透明に
+			// gameObject を Destroy すると遷移の処理が実行されないため、透明処理のみ
+			var spriteRenderer = GetComponent<SpriteRenderer> ();
+			var color = spriteRenderer.color;
+			color.a = 0.0f;
+			spriteRenderer.color = color;
 
 			Destroy (collider.gameObject);
 
