@@ -21,7 +21,7 @@ public class Player : MonoBehaviour {
 			// gameObject を Destroy すると遷移の処理が実行されないため、透明処理のみ
 			var spriteRenderer = GetComponent<SpriteRenderer> ();
 			var color = spriteRenderer.color;
-			color.a = 0.0f;
+			color.a = 0.1f;
 			spriteRenderer.color = color;
 
 			Destroy (collider.gameObject);
