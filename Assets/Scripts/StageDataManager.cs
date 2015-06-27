@@ -20,6 +20,8 @@ public class StageDataManager : MonoBehaviour {
 		public long level;
 		// 敵のレベル
 		public List<long> aliens;
+		public long minShootInterval;
+		public long maxShootInterval;
 	}
 
 	void Awake() {
@@ -66,6 +68,8 @@ public class StageDataManager : MonoBehaviour {
 
 			var stage = new Stage ();
 			stage.level = (long)stageDict["level"];
+			stage.minShootInterval = (long)stageDict["min_shoot_interval"];
+			stage.maxShootInterval = (long)stageDict["max_shoot_interval"];
 			stage.aliens = new List<long> ();
 			foreach (object alienObj in (List<object>)stageDict["aliens"]) {
 				var alien = (long)alienObj;

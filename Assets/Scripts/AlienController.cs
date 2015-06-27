@@ -27,9 +27,11 @@ public class AlienController : MonoBehaviour
 	public float moveInterval = 0.8f;
 	private float moveTimer = 0;
 	// ビームを発射するタイミング
-	private float minShootInterval = 1f;
-	private float maxShootInterval = 3f;
+	private float minShootInterval;
+	private float maxShootInterval;
 	private float shootTimer = 3f;
+
+	private StageDataManager.Stage stage;
 
 	// 一度に移動する距離
 	private float verticalDistance = 0.2f;
@@ -44,6 +46,10 @@ public class AlienController : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
+		stage = StageDataManager.instance.GetStage ();
+		minShootInterval = (float)stage.minShootInterval;
+		maxShootInterval = (float)stage.maxShootInterval;
+
 		startPos = transform.position;
 		GenerateAliens ();
 	}
@@ -69,8 +75,6 @@ public class AlienController : MonoBehaviour
 	// Alien の生成
 	void GenerateAliens ()
 	{
-		StageDataManager.Stage stage = StageDataManager.instance.GetStage ();
-
 		// （横は中心、縦は上）を起点として Alien を配置していく
 		for (int x = 1; x <= horizontalLength; x++) {
 			for (int y = 1; y <= stage.aliens.Count; y++) {
@@ -170,8 +174,12 @@ public class AlienController : MonoBehaviour
 	{
 		shootTimer -= Time.deltaTime;
 
+
 		if (shootTimer <= 0.0f) {
 			shootTimer = Random.Range (minShootInterval, maxShootInterval);
+			Debug.Log (minShootInterval);
+			Debug.Log (maxShootInterval);
+			Debug.Log (shootTimer);
 			return true;
 		} else {
 			return false;

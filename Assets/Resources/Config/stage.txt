@@ -2,43 +2,63 @@
   "stages": [
     {
       "level": 1,
-      "aliens": [1,1,1,1,1]
+      "aliens": [1,1,1,1,1],
+      "min_shoot_interval": 3,
+      "max_shoot_interval": 5
     },
     {
       "level": 2,
-      "aliens": [1,2,1,2,1]
+      "aliens": [1,2,1,2,1],
+      "min_shoot_interval": 3,
+      "max_shoot_interval": 4,
     },
     {
       "level": 3,
-      "aliens": [2,1,2,1,2]
+      "aliens": [2,1,2,1,2],
+      "min_shoot_interval": 2,
+      "max_shoot_interval": 5
     },
     {
       "level": 4,
-      "aliens": [3,2,3,2,1]
+      "aliens": [3,2,3,2,1],
+      "min_shoot_interval": 2,
+      "max_shoot_interval": 4
     },
     {
       "level": 5,
-      "aliens": [3,2,3,2,3]
+      "aliens": [3,2,3,2,3],
+      "min_shoot_interval": 2,
+      "max_shoot_interval": 3
     },
     {
       "level": 6,
-      "aliens": [3,3,3,3,3]
+      "aliens": [3,3,3,3,3],
+      "min_shoot_interval": 2,
+      "max_shoot_interval": 3
     },
     {
       "level": 7,
-      "aliens": [3,4,3,4,3]
+      "aliens": [3,4,3,4,3],
+      "min_shoot_interval": 2,
+      "max_shoot_interval": 3
     },
     {
       "level": 8,
-      "aliens": [5,4,3,2,1]
+      "aliens": [5,4,3,2,1],
+      "min_shoot_interval": 1,
+      "max_shoot_interval": 3
     },
     {
       "level": 9,
-      "aliens": [5,4,3,4,3]
+      "aliens": [5,4,3,4,3],
+      "min_shoot_interval": 2,
+      "max_shoot_interval": 3
     },
     {
       "level": 10,
-      "aliens": [5,5,5,5,5]
+      "aliens": [5,5,5,5,5],
+      "min_shoot_interval": 1,
+      "max_shoot_interval": 3
     }
   ]
 }
